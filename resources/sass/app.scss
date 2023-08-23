@@ -4,5 +4,37 @@
 // Variables
 @import 'variables';
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+ * {
+    font-family: 'Poppins', sans-serif;
+ }
+
+ // Bootstrap Icons
+ @import url('bootstrap-icons');
+
+ // Variables
+// @import 'variables';
+
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+@import "../../node_modules/bootstrap/scss/functions";
+
+
+// Required
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+
+
+
+$custom-colors:(
+    'lightGrey' : #ebebeb,
+    'grey' : #7b7b7b
+);
+
+// Merge the maps
+$theme-colors : map-merge($theme-colors, $custom-colors);
