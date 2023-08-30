@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manga;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreMangaRequest;
 use App\Http\Requests\UpdateMangaRequest;
-use App\Models\Manga;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class MangaController extends Controller
 {
@@ -13,7 +17,8 @@ class MangaController extends Controller
      */
     public function index()
     {
-        //
+        $mangas = Manga::latest('id')->paginate(10)->withQueryString();
+        return view('manga.index', compact('mangas'));
     }
 
     /**
@@ -21,7 +26,7 @@ class MangaController extends Controller
      */
     public function create()
     {
-        //
+        return view('manga.create');
     }
 
     /**
@@ -29,15 +34,26 @@ class MangaController extends Controller
      */
     public function store(StoreMangaRequest $request)
     {
-        //
+        $formData = $request->validated();
+        $formData['slug'] = Str::slug($request->title);
+        $formData['excerpt'] = Str::words($request->summary, 10, '...');
+        $formData['author_id'] = Auth::id();
+        if ($request->hasFile('cover')) {
+            $formData['cover'] = $request->file('cover')->store('covers', 'public');
+        }
+
+        Manga::create($formData);
+
+        return redirect()->route('manga.index')->with(['message' => 'A New Manga is created']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Manga $manga)
+    public function show($slug)
     {
-        //
+        $manga = Manga::where('slug', $slug)->first();
+        return view('manga.detail', compact('manga'));
     }
 
     /**
@@ -45,7 +61,7 @@ class MangaController extends Controller
      */
     public function edit(Manga $manga)
     {
-        //
+        return view('manga.edit', compact('manga'));
     }
 
     /**
@@ -53,7 +69,15 @@ class MangaController extends Controller
      */
     public function update(UpdateMangaRequest $request, Manga $manga)
     {
-        //
+        $formData = $request->validated();
+        $formData['slug'] = Str::slug($request->title);
+        $formData['excerpt'] = Str::words($request->summary, 10, '...');
+        if ($request->hasFile('cover')) {
+            $formData['cover'] = $request->file('cover')->store('covers', 'public');
+        }
+
+        $manga->update($formData);
+        return redirect()->back()->with(['message' => 'Manga has been updated!']);
     }
 
     /**
@@ -61,6 +85,8 @@ class MangaController extends Controller
      */
     public function destroy(Manga $manga)
     {
-        //
+        $manga->delete();
+        return redirect()->back()->with(['message' => 'Manga has been deleted!']);
     }
+
 }

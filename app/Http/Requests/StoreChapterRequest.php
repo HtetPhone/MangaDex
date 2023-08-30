@@ -11,7 +11,7 @@ class StoreChapterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreChapterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'min:3',
+            'manga_id' => 'required|exists:mangas,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'manga_id.required' => 'Please Select the Manga',
+            'manga_id.exists' => 'Please Select the Manga'
         ];
     }
 }

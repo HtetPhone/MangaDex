@@ -18,23 +18,7 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
-@import "../../node_modules/bootstrap/scss/functions";
 
-
-// Required
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/variables-dark";
-@import "../node_modules/bootstrap/scss/maps";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/root";
-
-
-
-
-$custom-colors:(
-    'lightGrey' : #ebebeb,
-    'grey' : #7b7b7b
-);
-
-// Merge the maps
-$theme-colors : map-merge($theme-colors, $custom-colors);
+.alert-msg {
+    transform: translateX(-50%) translateY(10%);
+}

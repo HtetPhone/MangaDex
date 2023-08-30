@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('mangas', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug')->nullable();
+            $table->longText('summary');
+            $table->string('excerpt')->nullable();
+            $table->string('cover')->nullable();
+            $table->foreignId('author_id');
             $table->timestamps();
         });
     }

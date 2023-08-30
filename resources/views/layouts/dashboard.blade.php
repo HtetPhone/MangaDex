@@ -12,16 +12,22 @@
 </head>
 
 <body>
-        <!-- Header Here -->
-        @include('partials.nav')
-        @include('partials.patreon-nav')
+    @include('partials.nav')
+    <div class="container">
+        <div class="row">
+            <!-- sidebar Here -->
+            <div class="col-3">
 
-        <!-- Content Here -->
-        <div class="main container">
-            @yield('content')
+            </div>
+
+            <!-- Content Here -->
+            <div class="main col-9">
+                @yield('content')
+            </div>
         </div>
+    </div>
 
-        @yield('footer')
+
 
 </body>
 

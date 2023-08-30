@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
+
+use function Laravel\Prompts\text;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +19,15 @@ class MangaFactory extends Factory
      */
     public function definition(): array
     {
+        $title = fake()->name();
+        $summary = fake()->paragraph(5);
         return [
-            //
+            'title' => $title,
+            'slug' => Str::slug($title),
+            'summary' => $summary,
+            'excerpt' => Str::words($summary, 10, '...'),
+            'cover' => fake()->imageUrl(400, 400, 'cats'),
+            'author_id' => rand(1,10),
         ];
     }
 }

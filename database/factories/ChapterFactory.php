@@ -16,8 +16,15 @@ class ChapterFactory extends Factory
      */
     public function definition(): array
     {
+        $images = [];
+        for ($i = 0; $i < 10; $i++) {
+            $images[] = fake()->imageUrl(400,400,'cats');
+        }
         return [
-            //
+            'title' => fake()->title(),
+            'images' => $images,
+            'manga_id' => rand(1, 10),
+            'user_id' => rand(1, 10)
         ];
     }
 }
