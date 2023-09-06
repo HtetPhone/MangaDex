@@ -6,7 +6,7 @@
             <a title="back" href="{{ url()->previous() }}" class="btn btn-dark"> <i class="bi bi-arrow-left"></i> </a>
             <a href="{{ route('chapter.index') }}" class="btn btn-dark"> <i class="bi bi-book"></i> Chapter List</a>
         </div>
-        
+
         <form method="POST" action="{{ route('chapter.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
@@ -25,7 +25,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="">Chapter Title <span class="text-danger">*Optinal</span></label>
+                <label for="">Chapter Title</label>
                 <input type="text" name="title" class="form-control">
                 @error('title')
                     <p class="text-danger small">{{ $message }}</p>
@@ -35,6 +35,9 @@
             <div class="mb-3">
                 <label for="">Chapter Images</label>
                 <input type="file" name="images[]" id="" class="form-control" multiple>
+                @error('images')
+                    <p class="text-danger small">{{ $message }}</p>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-outline-dark">Create</button>

@@ -22,8 +22,10 @@ class StoreChapterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'min:3',
-            'manga_id' => 'required|exists:mangas,id'
+            'title' => 'required|min:3',
+            'manga_id' => 'required|exists:mangas,id',
+            'images' => 'required',
+            'images.*' => 'file|mimes:png,jpg'
         ];
     }
 
@@ -31,7 +33,9 @@ class StoreChapterRequest extends FormRequest
     {
         return [
             'manga_id.required' => 'Please Select the Manga',
-            'manga_id.exists' => 'Please Select the Manga'
+            'manga_id.exists' => 'Please Select the Manga',
+            'images.required' => 'Please Select Chapter images',
+            // 'images.*.mimes:png,jpg' => 'Invalid Image extensions'
         ];
     }
 }

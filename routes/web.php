@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('page.index');
     Route::get('/MangaDex/manga/{slug}', 'manga')->name('page.manga');
-    Route::get('/manga/{manga:slug}/chapter/{chapter}', 'chapter')->name('page.chapter');
+    Route::get('/manga/{manga:slug}/chapter/{chapter:chapter_no?}', 'chapter')->name('page.chapter');
 });
 
 Auth::routes();

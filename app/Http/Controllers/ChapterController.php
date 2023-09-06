@@ -33,11 +33,13 @@ class ChapterController extends Controller
      */
     public function store(StoreChapterRequest $request)
     {
+        // dd ($request->file('images'));
+
         $formData = $request->validated();
         $formData['user_id'] = Auth::id();
         if($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $images[] = $image->store($request->manga_id.'OfChapter', 'public');
+            foreach ($request->file('images') as $key => $image) {
+                $images[] = $image->store($request->manga_id.'ChapterImages', 'public');
             }
             $formData['images'] = $images;
         }
@@ -89,3 +91,4 @@ class ChapterController extends Controller
         return view('chapter.manageChapter', compact('manga'));
     }
 }
+

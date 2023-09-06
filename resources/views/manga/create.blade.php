@@ -13,6 +13,9 @@
             <div class="mb-3">
                 <label for="">Manga Cover</label>
                 <input type="file" name="cover" id="" class="form-control">
+                @error('cover')
+                    <p class="text-danger small">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="">Manga Summary</label>

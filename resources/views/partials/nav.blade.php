@@ -28,7 +28,7 @@
         <!--profile and logout -->
         @auth
             <div class="btn btn-outline-dark dropdown ms-3">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                 </a>

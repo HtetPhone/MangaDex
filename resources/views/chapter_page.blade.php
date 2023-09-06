@@ -13,7 +13,7 @@
 
         {{-- manga images  --}}
         <div class="mb-4">
-            @foreach ($chapter->images as $image)
+            @foreach (array_reverse($chapter->images) as $image)
                 <img src="{{ asset('storage/'.$image) }}" class="mx-auto w-50 my-0" alt="">
             @endforeach
         </div>
@@ -24,6 +24,6 @@
             @include('partials.chapter-select-box')
             @include('partials.chapter-paginate')
         </div>
-        
+
     </div>
 @endsection

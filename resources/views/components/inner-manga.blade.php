@@ -9,9 +9,9 @@
         <h5 class="fw-bold mb-4">
             Latest Chapters
         </h5>
-        
+
         @forelse ($manga->chapters()->latest('id')->get() as $chapter)
-                <a href="{{ route('page.chapter', [$manga->slug, $chapter->id]) }}"
+                <a href="{{ route('page.chapter', [$manga->slug, $chapter->chapter_no]) }}"
                     class="list-group-item list-group-item-action pb-0 border-0 border-bottom
                      d-inline-block d-flex align-items-center justify-content-between">
                     <p> Chapter {{ $chapter->chapter_no }} - {{ $chapter->title ?? '' }} </p>

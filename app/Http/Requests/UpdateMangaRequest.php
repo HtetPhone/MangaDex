@@ -23,7 +23,16 @@ class UpdateMangaRequest extends FormRequest
     {
         return [
             'title' => 'required|min:3',
-            'summary' => 'required|min:3|max:2000'
+            'summary' => 'required|min:3|max:2000',
+            'cover' => 'file|required|mimes:png,jpg'
+        ];
+    }
+
+    //error messages
+    public function messages()
+    {
+        return [
+            'cover.required' => 'Please Select Cover Image'
         ];
     }
 }

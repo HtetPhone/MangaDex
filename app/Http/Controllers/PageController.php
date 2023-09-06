@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chapter;
 use App\Models\Manga;
+use App\Models\Chapter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
     public function index()
     {
+        // Storage::disk('local')->put('example.txt', 'Contents');
         $mangas = Manga::latest('id')->paginate(8)->withQueryString();
         return view('index', [
             'mangas' => $mangas

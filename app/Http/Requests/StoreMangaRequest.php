@@ -24,7 +24,15 @@ class StoreMangaRequest extends FormRequest
         return [
             'title' => 'required|min:3|max:100',
             'summary' => 'required|min:3',
-            'cover' => 'required|file'
+            'cover' => 'file|required|mimes:png,jpg'
+        ];
+    }
+
+    //error messages
+    public function messages()
+    {
+        return [
+            'cover.required' => 'Please Select Cover Image'
         ];
     }
 }
