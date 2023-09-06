@@ -11,9 +11,19 @@ class MangaPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+
+    //access all to admin
+    public function before(User $user)
     {
-        //
+        if($user->role === 'admin') {
+            return true;
+        }
+    }
+
+
+    public function viewAny(User $user, Manga $manga): bool
+    {
+        // return $user->id == $manga->author_id;
     }
 
     /**
@@ -21,7 +31,7 @@ class MangaPolicy
      */
     public function view(User $user, Manga $manga): bool
     {
-        //
+        return $user->id == $manga->author_id;
     }
 
     /**
@@ -37,7 +47,7 @@ class MangaPolicy
      */
     public function update(User $user, Manga $manga): bool
     {
-        //
+        return $user->id == $manga->author_id;
     }
 
     /**
@@ -45,7 +55,7 @@ class MangaPolicy
      */
     public function delete(User $user, Manga $manga): bool
     {
-        //
+        return $user->id == $manga->author_id;
     }
 
     /**

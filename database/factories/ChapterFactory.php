@@ -20,6 +20,7 @@ class ChapterFactory extends Factory
         for ($i = 0; $i < 10; $i++) {
             $images[] = fake()->imageUrl(400,400,'cats');
         }
+    
         return [
             'title' => fake()->title(),
             'images' => $images,

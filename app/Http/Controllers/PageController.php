@@ -10,11 +10,9 @@ class PageController extends Controller
 {
     public function index()
     {
-        $mangas = Manga::latest('id')->paginate(10)->withQueryString();
-        $hotMangas = Manga::latest('id')->limit('3')->get();
+        $mangas = Manga::latest('id')->paginate(8)->withQueryString();
         return view('index', [
-            'mangas' => $mangas,
-            'hotMangas' => $hotMangas
+            'mangas' => $mangas
         ]);
     }
 
@@ -24,9 +22,8 @@ class PageController extends Controller
         return view('manga', compact('manga'));
     }
 
-    public function chapter(Manga $manga, Chapter $chapter )
+    public function chapter(Manga $manga, Chapter $chapter)
     {
         return view('chapter_page', ['manga' => $manga, 'chapter' => $chapter]);
     }
-
 }

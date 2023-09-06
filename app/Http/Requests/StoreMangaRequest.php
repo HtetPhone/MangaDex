@@ -23,7 +23,8 @@ class StoreMangaRequest extends FormRequest
     {
         return [
             'title' => 'required|min:3|max:100',
-            'summary' => 'required|min:3'
+            'summary' => 'required|min:3',
+            'cover' => 'required|file'
         ];
     }
 }

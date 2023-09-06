@@ -41,7 +41,9 @@ class ChapterController extends Controller
             }
             $formData['images'] = $images;
         }
-
+        //chapter number
+        $manga = Manga::where('id', $request->manga_id)->first();
+        $formData['chapter_no'] = $manga->chapters->count() + 1;
         Chapter::create($formData);
 
         return redirect()->route('home')->with(['message' => 'New Chapter has been added!!']);
@@ -77,6 +79,7 @@ class ChapterController extends Controller
      */
     public function destroy(Chapter $chapter)
     {
+        $this->authorize('delete', $chapter);
         $chapter->delete();
         return back()->with(['message' => "Successfully Deleted!"]);
     }

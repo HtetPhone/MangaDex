@@ -8,6 +8,14 @@ use Illuminate\Auth\Access\Response;
 
 class ChapterPolicy
 {
+    //access all to admin
+    public function before(User $user)
+    {
+        if($user->role === 'admin') {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view any models.
      */
@@ -45,7 +53,7 @@ class ChapterPolicy
      */
     public function delete(User $user, Chapter $chapter): bool
     {
-        //
+        return $user->id == $chapter->user_id;
     }
 
     /**

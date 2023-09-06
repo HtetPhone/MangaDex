@@ -61,6 +61,8 @@ class MangaController extends Controller
      */
     public function edit(Manga $manga)
     {
+        $this->authorize('update', $manga);
+
         return view('manga.edit', compact('manga'));
     }
 
@@ -69,6 +71,8 @@ class MangaController extends Controller
      */
     public function update(UpdateMangaRequest $request, Manga $manga)
     {
+        $this->authorize('update', $manga);
+
         $formData = $request->validated();
         $formData['slug'] = Str::slug($request->title);
         $formData['excerpt'] = Str::words($request->summary, 10, '...');
@@ -85,6 +89,8 @@ class MangaController extends Controller
      */
     public function destroy(Manga $manga)
     {
+        $this->authorize('delete', $manga);
+            
         $manga->delete();
         return redirect()->back()->with(['message' => 'Manga has been deleted!']);
     }

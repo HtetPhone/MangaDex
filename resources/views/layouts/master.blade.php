@@ -12,16 +12,19 @@
 </head>
 
 <body>
-        <!-- Header Here -->
-        @include('partials.nav')
-        @include('partials.patreon-nav')
+    <!-- Header Here -->
+    @include('partials.nav')
+    @include('partials.patreon-nav')
 
-        <!-- Content Here -->
-        <div class="main container">
-            @yield('content')
-        </div>
+    <!-- Content Here -->
+    <div class="main container">
+        @yield('content')
+    </div>
+    @include('partials.alert-msg')
 
-        @yield('footer')
+    @yield('footer')
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </body>
 

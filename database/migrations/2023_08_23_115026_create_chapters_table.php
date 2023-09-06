@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->unsignedInteger('chapter_no')->nullable();
             $table->json('images');
             $table->foreignId('manga_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id');

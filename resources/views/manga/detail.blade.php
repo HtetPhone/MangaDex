@@ -9,7 +9,7 @@
             <hr>
             <p class="f">Cover Image :</p>
             <div class="text-center mb-4">
-                <img class="w-25" src="{{ $manga->cover ? asset( $manga->cover) : '' }}" alt="">
+                <img class="w-25" src="{{ asset('storage/'.$manga->cover) }}" alt="">
             </div>
             <hr>
             <p class="mb-0">Summary :</p>
@@ -18,10 +18,10 @@
             <div class="d-flex justify-content-between">
                 <p>Total Chapter : <span class="text-primary fw-semibold">{{$manga->chapters->count()}} chapters</span> </p>
                 <div>
-                    <a href="" class="btn btn-outline-dark btn-sm">Go Manage Chapters <i class="bi bi-arrow-right-circle-fill"></i> </a>
+                    <a href="{{route('chapters.manage', $manga->slug)}}" class="btn btn-outline-dark btn-sm">Go Manage Chapters <i class="bi bi-arrow-right-circle-fill"></i> </a>
                 </div>
             </div>
-            
+
             <hr>
         </div>
     </div>

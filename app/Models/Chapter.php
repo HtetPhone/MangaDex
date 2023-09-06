@@ -9,7 +9,7 @@ class Chapter extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'images', 'manga_id', 'user_id'];
+    protected $fillable = ['title', 'images', 'manga_id', 'user_id', 'chapter_no'];
     protected $casts = [
         'images' => 'array'
     ];
