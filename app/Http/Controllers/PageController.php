@@ -12,10 +12,15 @@ class PageController extends Controller
     public function index()
     {
         // Storage::disk('local')->put('example.txt', 'Contents');
-        $mangas = Manga::latest('id')->paginate(8)->withQueryString();
-        return view('index', [
-            'mangas' => $mangas
-        ]);
+        $mangas = Manga::when(request()->has('search'), function($q) {
+            $keyword = request()->search;
+            $q->where('title', 'like', '%'.$keyword.'%');
+        })
+        ->latest('id')
+        ->paginate(8)
+        ->withQueryString();
+
+        return view('index', ['mangas' => $mangas]);
     }
 
     public function manga($slug)

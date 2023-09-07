@@ -17,7 +17,13 @@ class MangaController extends Controller
      */
     public function index()
     {
-        $mangas = Manga::latest('id')->paginate(10)->withQueryString();
+        $mangas = Manga::when(auth()->user()->role != 'admin', function($q) {
+            $user_id = auth()->id();
+            $q->where('author_id', $user_id);
+        })
+        ->latest('id')
+        ->paginate(10)
+        ->withQueryString();
         return view('manga.index', compact('mangas'));
     }
 
@@ -90,7 +96,7 @@ class MangaController extends Controller
     public function destroy(Manga $manga)
     {
         $this->authorize('delete', $manga);
-            
+
         $manga->delete();
         return redirect()->back()->with(['message' => 'Manga has been deleted!']);
     }

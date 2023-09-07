@@ -31,5 +31,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         //gates here
         Gate::define('admin-only', fn(User $user) => $user->role === 'admin');
+        Gate::define('dashboard', fn(User $user) => $user->role === 'admin' || $user->role === 'author');
     }
 }

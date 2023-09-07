@@ -17,9 +17,10 @@
                 </li>
 
             </ul>
-            <form class="d-flex" role="search">
+            <!-- search box -->
+            <form class="d-flex" role="search" method="GET" action="{{ route('page.index') }}">
                 <div class="input-group">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <input name="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-dark" type="submit"> <i class="bi bi-search"></i> </button>
                 </div>
             </form>
