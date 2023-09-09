@@ -37,19 +37,25 @@ class ChapterController extends Controller
 
         $formData = $request->validated();
         $formData['user_id'] = Auth::id();
-        if($request->hasFile('images')) {
+        if ($request->hasFile('images')) {
             foreach ($request->file('images') as $key => $image) {
-                $images[] = $image->store($request->manga_id.'ChapterImages', 'public');
+                $images[] = $image->store($request->manga_id . 'ChapterImages', 'public');
             }
             $formData['images'] = $images;
         }
-        //chapter number
-        $manga = Manga::where('id', $request->manga_id)->first();
-        $formData['chapter_no'] = $manga->chapters->count() + 1;
+
+        if ($request->chapter_no) {
+            $formData['chapter_no'] = $request->chapter_no;
+        } else {
+            //chapter number
+            $manga = Manga::where('id', $request->manga_id)->first();
+            $latestChap = $manga->chapters()->latest()->first()->chapter_no;
+            $formData['chapter_no'] = $latestChap + 1;
+        }
+
         Chapter::create($formData);
 
         return redirect()->route('home')->with(['message' => 'New Chapter has been added!!']);
-
     }
 
     /**
@@ -91,4 +97,3 @@ class ChapterController extends Controller
         return view('chapter.manageChapter', compact('manga'));
     }
 }
-

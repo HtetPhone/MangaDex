@@ -12,7 +12,7 @@
     </div>
 
     <div class="row">
-        @foreach ($manga->chapters()->latest('id')->paginate(20) as $chapter)
+        @foreach ($manga->chapters()->orderBy('chapter_no', 'desc')->paginate(20) as $chapter)
             <div class="col-2">
                 <div class="d-flex p-2 border border-1 border-dark rounded align-items-center justify-content-between mb-3">
                     <p class="small mb-0"> Chapter {{ $chapter->chapter_no }} </p>

@@ -25,8 +25,15 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="">Chapter Number <span class="text-danger small">*Optional</span> </label>
+                <input type="number" name="chapter_no" class="form-control">
+                @error('chapter_no')
+                    <p class="text-danger small">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label for="">Chapter Title</label>
-                <input type="text" name="title" class="form-control">
+                <input type="text" name="title" class="form-control" value="{{old('title')}}">
                 @error('title')
                     <p class="text-danger small">{{ $message }}</p>
                 @enderror

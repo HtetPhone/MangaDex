@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreChapterRequest extends FormRequest
@@ -21,11 +23,14 @@ class StoreChapterRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd(request()->manga_id);
+        $id = request()->manga_id;
         return [
             'title' => 'required|min:3',
+            'chapter_no' => ['nullable', 'numeric', Rule::unique('chapters', 'chapter_no')->where(fn (Builder $query) => $query->where('manga_id', $id)) ],
             'manga_id' => 'required|exists:mangas,id',
             'images' => 'required',
-            'images.*' => 'file|mimes:png,jpg'
+            'images.*' => 'file|mimes:png,jpg',
         ];
     }
 
