@@ -38,7 +38,7 @@ class PageController extends Controller
         ]);
     }
 
-    public function chapter(Manga $manga, Chapter $chapter)
+    public function chapter(Manga $manga,Chapter $chapter)
     {
         $firstChapter = $manga->chapters()->orderBy('chapter_no', 'asc')->first();
         $lastChapter = $manga->chapters()->latest('chapter_no')->first();
@@ -48,5 +48,11 @@ class PageController extends Controller
             'firstChapter' => $firstChapter,
             'lastChapter' => $lastChapter
         ]);
+    }
+
+    public function select(Manga $manga, Request $request)
+    {
+        // dd($request);
+        return redirect()->route('page.chapter', [$manga, $request->chapter_no]);
     }
 }
