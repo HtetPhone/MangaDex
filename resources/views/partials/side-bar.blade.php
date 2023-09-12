@@ -1,4 +1,7 @@
 <ul class="list-group">
+    <h5>
+        <a href="{{ route('home') }}" class="list-group-item list-group-item-action text-primary"><i class="bi bi-speedometer2"></i> Dashboard </a>
+    </h5>
     <h5>Manga</h5>
     <a href="{{ route('manga.index') }}" class="list-group-item list-group-item-action"><i class="bi bi-book"></i> Manga
         List </a>

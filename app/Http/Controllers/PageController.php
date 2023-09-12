@@ -26,11 +26,27 @@ class PageController extends Controller
     public function manga($slug)
     {
         $manga = Manga::where('slug', $slug)->first();
-        return view('manga', compact('manga'));
+        $chapters = $manga->chapters()->orderBy('chapter_no', 'desc')->paginate(10);
+        $firstChapter = $manga->chapters()->orderBy('chapter_no', 'asc')->first();
+        $lastChapter = $manga->chapters()->latest('chapter_no')->first();
+        // dd($firstChapter);
+        return view('manga',[
+            'manga' => $manga,
+            'chapters' => $chapters,
+            'firstChapter' => $firstChapter,
+            'lastChapter' => $lastChapter
+        ]);
     }
 
     public function chapter(Manga $manga, Chapter $chapter)
     {
-        return view('chapter_page', ['manga' => $manga, 'chapter' => $chapter]);
+        $firstChapter = $manga->chapters()->orderBy('chapter_no', 'asc')->first();
+        $lastChapter = $manga->chapters()->latest('chapter_no')->first();
+        return view('chapter_page', [
+            'manga' => $manga,
+            'chapter' => $chapter,
+            'firstChapter' => $firstChapter,
+            'lastChapter' => $lastChapter
+        ]);
     }
 }

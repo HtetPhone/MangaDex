@@ -9,7 +9,7 @@
                 <a title="clear search" href="{{ route('page.index') }}" class="btn btn-danger ms-4 p-0 px-1 border-1 border-dark"> <i class="bi bi-x-lg"></i> </a>
             </div>
         @endif
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-9 mb-4">
             <div class="row flex-wrap">
                 @forelse ($mangas as $manga)
                     <x-outter-manga-frame :manga="$manga" />
@@ -23,8 +23,8 @@
 
             </div>
         </div>
-
-        <div class="col-12 col-md-3">
+        <hr class="d-block d-md-none w-75 mx-auto text-primary">
+        <div class="col-12 col-md-3 mb-4">
             @include('partials.hot-manga')
         </div>
         <div class="col-12 mt-5">

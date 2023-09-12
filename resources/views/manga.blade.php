@@ -6,7 +6,7 @@
 
     <div class="row mt-5">
         <div class="col-12 col-md-9">
-            <x-inner-manga :manga="$manga" />
+            <x-inner-manga :manga="$manga" :chapters="$chapters" :firstChapter="$firstChapter" :lastChapter="$lastChapter" />
         </div>
 
         <div class="col-12 col-md-3">

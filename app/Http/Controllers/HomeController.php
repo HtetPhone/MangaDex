@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manga;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $authors = User::where('role', 'author')->get();
+        $users = User::where('role', 'user')->get();
+        $mangas = Manga::all();
+        // dd($authors);
+        return view('home', ['authors' => $authors, 'users'=> $users, 'mangas' => $mangas]);
     }
 
 
