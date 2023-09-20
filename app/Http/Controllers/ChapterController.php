@@ -49,8 +49,14 @@ class ChapterController extends Controller
         } else {
             //chapter number
             $manga = Manga::where('id', $request->manga_id)->first();
-            $latestChap = $manga->chapters()->orderBy('chapter_no', 'desc')->first()->chapter_no;
-            $formData['chapter_no'] = $latestChap + 1;
+
+            $totalChap = $manga->chapters()->count();
+            if($totalChap == 0 ) {
+                $formData['chapter_no'] = $totalChap + 1;
+            }else {
+                $latestChap = $manga->chapters()->orderBy('chapter_no', 'desc')->first()->chapter_no;
+                $formData['chapter_no'] = $latestChap + 1;
+            }
         }
 
         Chapter::create($formData);

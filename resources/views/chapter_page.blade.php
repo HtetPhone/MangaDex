@@ -24,6 +24,16 @@
             @include('partials.chapter-select-box')
             @include('partials.chapter-paginate')
         </div>
-
+        <hr>
+        <!-- comment and reply here -->
+        <div class="my-4 mb-5 text-start py-5">
+            @include('partials.discussion')
+        </div>
     </div>
+    @include('partials.scroll-to-top')
+    @vite(['resources/js/scroll-to-top.js'])
+@endsection
+
+@section('footer')
+   <x-footer/>
 @endsection

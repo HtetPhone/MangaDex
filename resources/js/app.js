@@ -4,3 +4,7 @@ import './bootstrap';
 // selectChapter.addEventListener('change', function() {
 //     this.submit();
 // });
+
+
+import "./edit-box";
+import "./reply-box";

@@ -18,4 +18,8 @@ class Chapter extends Model
     {
         return $this->belongsTo(Manga::class, 'manga_id');
     }
+
+    public function comments() {
+        return $this->hasMany(Comment::class, 'chapter_id');
+    }
 }

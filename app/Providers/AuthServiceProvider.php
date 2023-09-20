@@ -6,9 +6,12 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Models\Manga;
+use App\Models\Reply;
 use App\Models\Chapter;
 use App\Policies\MangaPolicy;
+use App\Policies\ReplyPolicy;
 use App\Policies\ChapterPolicy;
+use App\Policies\CommentPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -21,7 +24,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Manga::class => MangaPolicy::class,
-        Chapter::class => ChapterPolicy::class
+        Chapter::class => ChapterPolicy::class,
+        Comment::class => CommentPolicy::class,
+        Reply::class => ReplyPolicy::class
     ];
 
     /**
