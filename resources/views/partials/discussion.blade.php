@@ -31,7 +31,7 @@
 
 <!-- comment outputs here -->
 <div class="p-2">
-    @forelse ($chapter->comments()->latest()->get() as $comment)
+    @forelse ($comments as $comment)
         <div class="mb-4 border-bottom">
             <p class="mb-1">
                 <span class="fw-bold text-primary"> <i class="bi bi-person-fill"></i> {{ $comment->user->name }}</span>

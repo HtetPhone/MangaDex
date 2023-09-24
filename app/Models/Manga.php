@@ -11,7 +11,6 @@ class Manga extends Model
 
     protected $fillable = ['title', 'slug', 'summary', 'excerpt', 'cover', 'author_id'];
 
-
     public function user()
     {
         return $this->belongsTo(User::class, 'author_id');
@@ -20,5 +19,25 @@ class Manga extends Model
     public function chapters()
     {
         return $this->hasMany(Chapter::class);
+    }
+
+    //latest and oldest chapter
+    // public function latestChap()
+    // {
+    //     return $this->chapters()->one()->latestOfMany();
+    // }
+    public function lastChap()
+    {
+        return $this->chapters()->one()->ofMany('chapter_no', 'max');
+    }
+
+    public function firstChap()
+    {
+        return $this->chapters()->one()->ofMany('chapter_no', 'min');
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
     }
 }

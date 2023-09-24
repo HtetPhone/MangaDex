@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreMangaRequest;
 use App\Http\Requests\UpdateMangaRequest;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class MangaController extends Controller
@@ -17,13 +18,13 @@ class MangaController extends Controller
      */
     public function index()
     {
-        $mangas = Manga::when(auth()->user()->role != 'admin', function($q) {
+        $mangas = Manga::when(auth()->user()->role != 'admin', function ($q) {
             $user_id = auth()->id();
             $q->where('author_id', $user_id);
         })
-        ->latest('id')
-        ->paginate(10)
-        ->withQueryString();
+            ->latest('id')
+            ->paginate(10)
+            ->withQueryString();
         return view('manga.index', compact('mangas'));
     }
 
@@ -32,7 +33,8 @@ class MangaController extends Controller
      */
     public function create()
     {
-        return view('manga.create');
+        $genres = Genre::latest('id')->get();
+        return view('manga.create', ['genres' => $genres]);
     }
 
     /**
@@ -47,9 +49,14 @@ class MangaController extends Controller
         if ($request->hasFile('cover')) {
             $formData['cover'] = $request->file('cover')->store('covers', 'public');
         }
-
         Manga::create($formData);
-
+        //genres
+        $genres = [];
+        foreach ($request->genres as $genre) {
+            $genres[] = $genre;
+        }
+        $manga = Manga::latest()->first();
+        $manga->genres()->attach($genres);
         return redirect()->route('manga.index')->with(['message' => 'A New Manga is created']);
     }
 
@@ -68,7 +75,7 @@ class MangaController extends Controller
     public function edit(Manga $manga)
     {
         $this->authorize('update', $manga);
-
+        // dd($manga->genres->contains('id','1'));
         return view('manga.edit', compact('manga'));
     }
 
@@ -85,8 +92,15 @@ class MangaController extends Controller
         if ($request->hasFile('cover')) {
             $formData['cover'] = $request->file('cover')->store('covers', 'public');
         }
-
         $manga->update($formData);
+        //adding data to medium table for many to many rs
+        if ($request->genres) {
+            $genres = [];
+            foreach ($request->genres as $genre) {
+                $genres[] = $genre;
+            }
+            $manga->genres()->sync($genres);
+        }
         return redirect()->back()->with(['message' => 'Manga has been updated!']);
     }
 
@@ -100,5 +114,4 @@ class MangaController extends Controller
         $manga->delete();
         return redirect()->back()->with(['message' => 'Manga has been deleted!']);
     }
-
 }

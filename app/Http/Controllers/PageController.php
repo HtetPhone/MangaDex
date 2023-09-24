@@ -29,35 +29,21 @@ class PageController extends Controller
         $chapters = $manga->chapters()
         ->latest('chapter_no')
         ->paginate(10);
-        $firstChapter = $manga->chapters()
-        ->orderBy('chapter_no', 'asc')->first();
-        $lastChapter = $manga->chapters()
-        ->latest('chapter_no')
-        ->first();
         $hotMangas = Manga::with(['chapters'])
         ->latest('id')->limit('3')->get();
         return view('manga',[
             'manga' => $manga,
-            'hotMangas' => $hotMangas,
             'chapters' => $chapters,
-            'firstChapter' => $firstChapter,
-            'lastChapter' => $lastChapter
+            'hotMangas' => $hotMangas,
         ]);
     }
 
     public function chapter(Manga $manga,Chapter $chapter)
     {
-        $firstChapter = $manga->chapters()
-        ->orderBy('chapter_no', 'asc')
-        ->first();
-        $lastChapter = $manga->chapters()
-        ->latest('chapter_no')
-        ->first();
         return view('chapter_page', [
-            'chapter' => $chapter,
             'manga' => $manga,
-            'firstChapter' => $firstChapter,
-            'lastChapter' => $lastChapter
+            'chapter' => $chapter,
+            'comments' => $chapter->comments()->latest('id')->get()
         ]);
     }
 

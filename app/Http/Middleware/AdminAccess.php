@@ -18,7 +18,7 @@ class AdminAccess
     {
         //prevent normal users form accessing admin dashboard
         if(Auth::user()) {
-            if(Auth::user()->role == "user") {
+            if(Auth::user()->role === "user") {
                 return redirect()->route('page.index')->with(['message' => 'You are not an admin!!']);
             }
         }

@@ -1,6 +1,9 @@
 @props(['mangas'])
 
-<h5>Manga List</h5>
+<div class="d-flex align-items-center">
+    <h5>Manga List</h5>
+    <a href="{{route('manga.create')}}" class="btn btn-sm btn-dark ms-auto"><i class="bi bi-plus-circle"></i> Create Manga</a>
+</div>
 <hr>
 <div class="table-responsive">
     <table class="table table-hover table-striped">
@@ -8,7 +11,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col" style="min-width: 20%">Title</th>
-                <th>Author</th>
+                <th>Genre</th>
+                <th>Author/Creator</th>
                 <th scope="col">Total Chapters</th>
                 <th scope="col">Handle</th>
             </tr>
@@ -20,6 +24,11 @@
                     <td>
                         <p class="mb-0">{{ $manga->title }}</p>
                         <span class="small text-black-50">{{ $manga->excerpt }}</span>
+                    </td>
+                    <td>
+                       @foreach ($manga->genres as $genre)
+                            <span class="small">{{$genre->name}} </span> /
+                       @endforeach
                     </td>
                     <td>
                         {{ $manga->user->name }}
@@ -52,7 +61,6 @@
                             action="{{ route('manga.destroy', $manga->id) }}" class="d-inline-block">
                             @csrf
                             @method('delete')
-
                         </form>
                     </td>
                 </tr>

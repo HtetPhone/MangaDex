@@ -2,12 +2,19 @@
 
 @section('content')
     <div class="px-3 mb-4">
-        <a href="{{ url()->previous() }}" class="btn btn-dark">Back</a>
+        <a href="{{ route('manga.index') }}" class="btn btn-dark"> <i class="bi bi-house"></i> Home</a>
         <hr>
         <div class="">
             <h3 class="my-3"> Title : <span class="fw-semibold  ">{{ $manga->title }}</span> </h3>
             <hr>
-            <p class="f">Cover Image :</p>
+            <p>
+                Genres :
+                @foreach ($manga->genres as $genre)
+                    <span class="small text-primary fw-semibold"> {{$genre->name}} </span> /
+                @endforeach
+            </p>
+            <hr>
+            <p class="">Cover Image :</p>
             <div class="text-center mb-4">
                 <img class="w-25" src="{{ asset('storage/'.$manga->cover) }}" alt="">
             </div>

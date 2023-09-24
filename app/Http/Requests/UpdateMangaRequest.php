@@ -24,7 +24,8 @@ class UpdateMangaRequest extends FormRequest
         return [
             'title' => 'required|min:3',
             'summary' => 'required|min:3|max:2000',
-            'cover' => 'file|required|mimes:png,jpg'
+            'cover' => 'file|mimes:png,jpg',
+            'genres' => 'required'
         ];
     }
 
@@ -32,7 +33,8 @@ class UpdateMangaRequest extends FormRequest
     public function messages()
     {
         return [
-            'cover.required' => 'Please Select Cover Image'
+            'cover.required' => 'Please Select Cover Image',
+            'genres.required' => 'A single genre is requied at least'
         ];
     }
 }

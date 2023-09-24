@@ -31,13 +31,19 @@
                             </td>
                         </tr>
                     @empty
-                        <p class="text-danger">No User Yet</p>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">
+                                <p class="text-danger fw-semibold mb-0">No User Yet</p>
+                            </td>
+                        </tr>
+                    </tbody>
                     @endforelse
                 </tbody>
             </table>
         </div>
         <div>
-            {{$users->links()}}
+            {{ $users->links() }}
         </div>
     </x-card-card-body>
 @endsection
