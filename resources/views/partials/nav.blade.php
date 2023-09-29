@@ -13,7 +13,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('page.index') }}">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">CONTACT US</a>
+                    <a class="nav-link" href="{{route('contact')}}">CONTACT US</a>
                 </li>
 
             </ul>

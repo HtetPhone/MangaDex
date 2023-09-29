@@ -1,16 +1,15 @@
 <?php
-
-use App\Models\Chapter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MangaController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\MangaChapterController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +22,16 @@ use App\Http\Controllers\GenreController;
 |
 */
 
-Route::controller(PageController::class)->group(function () {
+Route::controller(MangaChapterController::class)->group(function () {
     Route::get('/', 'index')->name('page.index');
     Route::get('/MangaDex/manga/{manga:slug}', 'manga')->name('page.manga');
     Route::get('/manga/{manga:slug}/chapter-{chapter:chapter_no?}', 'chapter')
         ->name('page.chapter');
     Route::post('/{manga:slug}/chapter', 'select')->name('select.chapter');
+});
+//contact page
+Route::controller(PageController::class)->group(function(){
+    Route::get('/contact', 'contact')->name('contact');
 });
 
 //comment and reply
@@ -39,7 +42,7 @@ Route::resource('replies', ReplyController::class)->middleware('auth');
 Auth::routes();
 
 //home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+Route::get('/home', [HomeController::class, 'index'])
     ->name('home');
 
 //admin dashboard
@@ -47,7 +50,6 @@ Route::middleware(['auth', 'admin.access'])->group(function () {
     Route::resource('manga', MangaController::class);
 
     Route::resource('chapter', ChapterController::class);
-
     Route::get('/chapters/manage/{manga:slug}', [ChapterController::class, 'manage'])
         ->name('chapters.manage');
 

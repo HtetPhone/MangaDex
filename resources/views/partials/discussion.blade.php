@@ -3,7 +3,8 @@
 
 @guest
     <p class="text-black-50">You must <a href="{{ route('register') }}" class="text-decoration-none">Register</a> or <a
-            href="{{ route('login') }}" class="text-decoration-none">Login</a> to post a Comment. </p>
+            href="{{ route('login') }}" class="text-decoration-none">Login</a> to post a Comment.
+    </p>
 @endguest
 
 @auth
@@ -37,7 +38,9 @@
                 <span class="fw-bold text-primary"> <i class="bi bi-person-fill"></i> {{ $comment->user->name }}</span>
                 <span class="small text-black-50 fw-light ms-2"> {{ $comment->created_at->diffForHumans() }} </span>
             </p>
-            <p class="small mb-0"> {{ $comment->comment }} </p>
+            <p class="small mb-0">
+                 {{ $comment->comment }}
+            </p>
             <!-- comment edit box here -->
             @include('partials.comment-edit-box')
 
