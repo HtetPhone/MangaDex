@@ -32,6 +32,7 @@ Route::controller(MangaChapterController::class)->group(function () {
 //contact page
 Route::controller(PageController::class)->group(function(){
     Route::get('/contact', 'contact')->name('contact');
+    Route::get('/redirect', 'redirect');
 });
 
 //comment and reply

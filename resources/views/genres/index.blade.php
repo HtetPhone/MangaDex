@@ -2,7 +2,12 @@
 
 @section('content')
     <x-card-card-body>
-        <h5>Genres List</h5>
+        <div class="d-flex justify-content-between align-items-center">
+            <h5>Genres List</h5>
+            <a href="{{route('genres.create')}}" class="btn btn-dark">
+                <i class="bi bi-plus-circle"></i>
+            </a>
+        </div>
         <hr>
         <div class="table-responsive">
             <table class="table table-hover table-striped">
