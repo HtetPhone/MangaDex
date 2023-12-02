@@ -1,6 +1,7 @@
 #MangaDex - Your Comic/Manga Books Website
 
 ##A thorough showcase
+
 *HomePage :
 ![Home](https://github.com/HtetPhone/MangaDex/blob/main/public/img/home_MangaDex.png){:width="50%"}
 
