@@ -1,21 +1,27 @@
-#MangaDex - Your Comic/Manga Books Website
+# MangaDex - Your Comic/Manga Books Website
 
-##A thorough showcase
+## A thorough showcase
 
-*HomePage :
-![Home](https://github.com/HtetPhone/MangaDex/blob/main/public/img/home_MangaDex.png){:width="50%"}
+* HomePage :
+<img src="https://github.com/HtetPhone/MangaDex/blob/main/public/img/home_MangaDex.png" alt="Home" width="600"/>
+<br>
 
-*Chapters :
-![Chapters](https://github.com/HtetPhone/MangaDex/blob/main/public/img/chapters_MangaDex.png){:width="50%"}
+* Chapters :
+<img src="https://github.com/HtetPhone/MangaDex/blob/main/public/img/chapters_MangaDex.png" alt="Chapters" width="600"/>
+<br>
 
-*Chapter View :
-![Chapter View](https://github.com/HtetPhone/MangaDex/blob/main/public/img/chapter_MangaDex.png){:width="50%"}
+* Chapter View :
+<img src="https://github.com/HtetPhone/MangaDex/blob/main/public/img/chapter_MangaDex.png" alt="Chapter View" width="200"/>
+<br>
 
-*Dashboard Panel :
-![Dashboard Panel](https://github.com/HtetPhone/MangaDex/blob/main/public/img/dashboard_MangaDex.png){:width="50%"}
+* Dashboard Panel :
+<img src="https://github.com/HtetPhone/MangaDex/blob/main/public/img/dashboard_MangaDex.png" alt="Dashboard" width="600"/>
+<br>
 
-*Manga List :
-![Manga List](https://github.com/HtetPhone/MangaDex/blob/main/public/img/mangaList_MangaDex.png){:width="50%"}
+* Manga List :
+<img src="https://github.com/HtetPhone/MangaDex/blob/main/public/img/mangaList_MangaDex.png" alt="Chapters" width="600"/>
+<br>
 
-*Chapters List :
-![Chapter List](https://github.com/HtetPhone/MangaDex/blob/main/public/img/chapterList_MangaDex.png){:width="50%"}
+* Chapters List :
+<img src="https://github.com/HtetPhone/MangaDex/blob/main/public/img/chapterList_MangaDex.png" alt="Chapters" width="600"/>
+<br>
