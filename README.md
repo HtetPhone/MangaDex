@@ -26,10 +26,10 @@
 <img src="https://github.com/HtetPhone/MangaDex/blob/main/public/img/chapterList_MangaDex.png" alt="Chapters" width="600"/>
 <br>
 
-##Dependencies
+## Dependencies
 You can check the lists of dependencies in the *composer.json* and *package.json*.
 
-###Some other info
+### Some other info
 * I used **Laravel Breeze** for *Frontend scaffolding*
 * The whole design is structed by **Bootstrap**
 * and rendered by **vite.js**
