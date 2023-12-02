@@ -32,14 +32,12 @@ class ChapterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreChapterRequest $request)
-    {
-        // dd ($request->file('images'));
-
+    {      
         $formData = $request->validated();
         $formData['user_id'] = Auth::id();
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $key => $image) {
-                $images[] = $image->store($request->manga_id . 'ChapterImages', 'public');
+                $images[] = $image->store($request->manga_id . 'mangaChapterImages', 'public');
             }
             $formData['images'] = $images;
         }
