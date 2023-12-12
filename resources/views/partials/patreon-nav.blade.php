@@ -15,7 +15,7 @@
 
         @auth
             @can('dashboard')
-                <a href="{{ route('home') }}" class="btn btn-sm btn-dark rounded-pill"> <i class="bi bi-speedometer"></i> Go To
+                <a href="{{ route('dashboard') }}" class="btn btn-sm btn-dark rounded-pill"> <i class="bi bi-speedometer"></i> Go To
                     Dashboard</a>
             @endcan
         @endauth

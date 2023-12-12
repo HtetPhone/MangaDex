@@ -26,8 +26,7 @@ class MangaChapterController extends Controller
     public function manga(Manga $manga)
     {
         $chapters = $manga->chapters()
-        ->latest('chapter_no')
-        ->paginate(10);
+        ->paginate(40);
         $hotMangas = Manga::with(['chapters'])
         ->latest('id')->limit('3')->get();
         return view('manga',[

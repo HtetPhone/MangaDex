@@ -42,17 +42,16 @@ Route::resource('replies', ReplyController::class)->middleware('auth');
 //auth
 Auth::routes();
 
-//home
-Route::get('/home', [HomeController::class, 'index'])
-    ->name('home');
 
 //admin dashboard
 Route::middleware(['auth', 'admin.access'])->group(function () {
+    Route::get('/dashboard', [PageController::class, 'dashboard'])
+        ->name('dashboard');
+
     Route::resource('manga', MangaController::class);
 
     Route::resource('chapter', ChapterController::class);
-    Route::get('/chapters/manage/{manga:slug}', [ChapterController::class, 'manage'])
-        ->name('chapters.manage');
+    Route::get('/chapters/manage/{manga:slug}', [ChapterController::class, 'manage'])->name('chapters.manage');
 
     Route::get('/users-list', [UserController::class, 'index'])->name('users.list')->middleware('can:admin-only');
 

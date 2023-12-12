@@ -22,4 +22,8 @@ class Chapter extends Model
     public function comments() {
         return $this->hasMany(Comment::class, 'chapter_id');
     }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

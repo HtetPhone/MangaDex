@@ -18,9 +18,9 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($mangas as $manga)
+            @forelse ($mangas as $key => $manga)
                 <tr>
-                    <th scope="row"> {{ $manga->id }} </th>
+                    <th scope="row"> {{ $key + 1 }} </th>
                     <td>
                         <p class="mb-0">{{ $manga->title }}</p>
                         <span class="small text-black-50">{{ $manga->excerpt }}</span>

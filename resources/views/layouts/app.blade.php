@@ -15,10 +15,10 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/side-bar.js'])
 </head>
 
-<body>
+<body class="min-vh-100 d-flex flex-column">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -79,10 +79,11 @@
 
         <div class="container">
             <main class="py-4 row">
-                <div class="col-2">
+                <div class="col-12 col-lg-3 d-flex align-items-start">
                     @include('partials.side-bar')
                 </div>
-                <div class="col-10">
+                <hr class="d-block d-lg-none my-3">
+                <div class="col-12 col-lg-9 mt-4 mt-lg-0">
                     @yield('content')
                 </div>
             </main>

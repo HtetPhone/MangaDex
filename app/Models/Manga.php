@@ -26,6 +26,7 @@ class Manga extends Model
     // {
     //     return $this->chapters()->one()->latestOfMany();
     // }
+    
     public function lastChap()
     {
         return $this->chapters()->one()->ofMany('chapter_no', 'max');

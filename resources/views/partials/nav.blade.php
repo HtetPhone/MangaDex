@@ -8,42 +8,38 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="{{route('contact')}}">CONTACT US</a>
-                </li> --}}
-
-            </ul>
             <!-- search box -->
-            <form class="d-flex" role="search" method="GET" action="{{ route('page.index') }}">
+            <form class="d-flex ms-auto" role="search" method="GET" action="{{ route('page.index') }}">
                 <div class="input-group">
                     <input name="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-dark" type="submit"> <i class="bi bi-search"></i> </button>
                 </div>
             </form>
-        </div>
 
-        <!--profile and logout -->
-        @auth
-            <div class="btn btn-outline-dark dropdown ms-3">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+            <!--profile and logout -->
+            @auth
+                <div class="btn btn-outline-dark dropdown ms-lg-3 mt-3 mt-lg-0">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" v-pre>
+                        <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
                 </div>
-            </div>
-        @endauth
+            @endauth
+        </div>
+
+
 
 
     </div>

@@ -45,7 +45,7 @@ class ChapterPolicy
      */
     public function update(User $user, Chapter $chapter): bool
     {
-        //
+        return $chapter->user()->is($user);
     }
 
     /**
@@ -53,7 +53,7 @@ class ChapterPolicy
      */
     public function delete(User $user, Chapter $chapter): bool
     {
-        return $user->id == $chapter->user_id;
+        return $this->update($user, $chapter);
     }
 
     /**

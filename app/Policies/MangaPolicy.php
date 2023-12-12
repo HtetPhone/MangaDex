@@ -23,7 +23,7 @@ class MangaPolicy
 
     public function viewAny(User $user, Manga $manga): bool
     {
-        // return $user->id == $manga->author_id;
+        //
     }
 
     /**
@@ -31,7 +31,7 @@ class MangaPolicy
      */
     public function view(User $user, Manga $manga): bool
     {
-        return $user->id == $manga->author_id;
+        return true;
     }
 
     /**
@@ -47,7 +47,7 @@ class MangaPolicy
      */
     public function update(User $user, Manga $manga): bool
     {
-        return $user->id == $manga->author_id;
+        return $manga->user()->is($user);
     }
 
     /**
@@ -55,7 +55,7 @@ class MangaPolicy
      */
     public function delete(User $user, Manga $manga): bool
     {
-        return $user->id == $manga->author_id;
+        return $this->update($user, $manga);
     }
 
     /**

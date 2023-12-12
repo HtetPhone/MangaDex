@@ -18,13 +18,10 @@ class MangaController extends Controller
      */
     public function index()
     {
-        $mangas = Manga::when(auth()->user()->role != 'admin', function ($q) {
-            $user_id = auth()->id();
-            $q->where('author_id', $user_id);
-        })
-            ->latest('id')
-            ->paginate(10)
-            ->withQueryString();
+        $mangas = Manga::latest('id')
+        ->paginate(20)
+        ->withQueryString();
+        // dd($mangas);
         return view('manga.index', compact('mangas'));
     }
 

@@ -1,9 +1,10 @@
-<ul class="list-group">
+<ul class="list-group d-none d-lg-block w-75 w-lg-100 me-3" id="sideBar">
     <h5>
-        <a href="{{ route('home') }}" class="list-group-item list-group-item-action text-primary">
+        <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-action text-primary">
             <i class="bi bi-speedometer2"></i> Dashboard
         </a>
     </h5>
+
     <h5>Manga</h5>
     <a href="{{ route('manga.index') }}" class="list-group-item list-group-item-action">
         <i class="bi bi-book"></i> Manga List
@@ -34,3 +35,7 @@
         </a>
     @endcan
 </ul>
+
+<button id="sideBarBtn" class="btn btn-outline-dark d-block d-lg-none">
+    <i class="bi bi-list h4"></i>
+</button>
