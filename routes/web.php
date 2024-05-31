@@ -64,3 +64,7 @@ Route::middleware(['auth', 'admin.access'])->group(function () {
         Route::delete('/genres/{genre:name}', 'destroy')->name('genres.destroy');
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
